@@ -1,13 +1,13 @@
 [arm]
-master1=10.0.1.200
-master2=10.0.1.201
-minion1=10.0.1.202
+master1 ansible_host=10.0.1.200
+master2 ansible_host=10.0.1.201
+minion1 ansible_host=10.0.1.202
 
 [x86]
 
 [kube-master]
-master1=10.0.1.200
-master2=10.0.1.201
+master1 ansible_host=10.0.1.200
+master2 ansible_host=10.0.1.201
 
 [kube-minions]
-minion1=10.0.1.202
+minion1 ansible_host=10.0.1.202
