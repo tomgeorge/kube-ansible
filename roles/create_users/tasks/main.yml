@@ -1,0 +1,96 @@
+---
+- name: create user tom
+  user:  name=tom group=dev generate_ssh_key=yes password="{{tom_password}}" shell=/bin/bash
+
+- name: copy tom .profile
+  copy: src=../files/.profile dest=/home/tom/.profile owner=tom group=dev mode=644
+
+- name: copy tom .bashrc
+  copy: src=../files/.bashrc dest=/home/tom/.bashrc owner=tom group=dev mode=644
+
+- name: copy tom .bash_prompt
+  copy: src=../files/.bash_prompt dest=/home/tom/.bash_prompt owner=tom group=dev mode=644
+
+- name: create user andrew
+  user:  name=andrew group=dev generate_ssh_key=yes password="{{andrew_password}}" shell=/bin/bash
+
+- name: copy andrew .profile
+  copy: src=../files/.profile dest=/home/andrew/.profile owner=andrew group=dev mode=644
+
+- name: copy andrew .bashrc
+  copy: src=../files/.bashrc dest=/home/andrew/.bashrc owner=andrew group=dev mode=644
+
+- name: copy andrew .bash_prompt
+  copy: src=../files/.bash_prompt dest=/home/andrew/.bash_prompt owner=andrew group=dev mode=644
+
+- name: create user christian
+  user:  name=christian group=dev generate_ssh_key=yes password="{{christian_password}}" shell=/bin/bash
+
+- name: copy christian .profile
+  copy: src=../files/.profile dest=/home/christian/.profile owner=christian group=dev mode=644
+
+- name: copy christian .bashrc
+  copy: src=../files/.bashrc dest=/home/christian/.bashrc owner=christian group=dev mode=644
+
+- name: copy christian .bash_prompt
+  copy: src=../files/.bash_prompt dest=/home/christian/.bash_prompt owner=christian group=dev mode=644
+
+- name: create user josh
+  user:  name=josh group=dev generate_ssh_key=yes password="{{josh_password}}" shell=/bin/bash
+
+- name: copy josh .profile
+  copy: src=../files/.profile dest=/home/josh/.profile owner=josh group=dev mode=644
+
+- name: copy josh .bashrc
+  copy: src=../files/.bashrc dest=/home/josh/.bashrc owner=josh group=dev mode=644
+
+- name: copy josh .bash_prompt
+  copy: src=../files/.bash_prompt dest=/home/josh/.bash_prompt owner=josh group=dev mode=644
+
+- name: create user jason
+  user:  name=jason group=dev generate_ssh_key=yes password="{{jason_password}}" shell=/bin/bash
+
+- name: copy jason .profile
+  copy: src=../files/.profile dest=/home/jason/.profile owner=jason group=dev mode=644
+
+- name: copy jason .bashrc
+  copy: src=../files/.bashrc dest=/home/jason/.bashrc owner=jason group=dev mode=644
+
+- name: copy jason .bash_prompt
+  copy: src=../files/.bash_prompt dest=/home/jason/.bash_prompt owner=jason group=dev mode=644
+
+- name: create user maura
+  user:  name=maura group=dev generate_ssh_key=yes password="{{maura_password}}" shell=/bin/bash
+
+- name: copy maura .profile
+  copy: src=../files/.profile dest=/home/maura/.profile owner=maura group=dev mode=644
+
+- name: copy maura .bashrc
+  copy: src=../files/.bashrc dest=/home/maura/.bashrc owner=maura group=dev mode=644
+
+- name: copy maura .bash_prompt
+  copy: src=../files/.bash_prompt dest=/home/maura/.bash_prompt owner=maura group=dev mode=644
+
+- name: create user mike
+  user:  name=mike group=dev generate_ssh_key=yes password="{{mike_password}}" shell=/bin/bash
+
+- name: copy mike .profile
+  copy: src=../files/.profile dest=/home/mike/.profile owner=mike group=dev mode=644
+
+- name: copy mike .bashrc
+  copy: src=../files/.bashrc dest=/home/mike/.bashrc owner=mike group=dev mode=644
+
+- name: copy mike .bash_prompt
+  copy: src=../files/.bash_prompt dest=/home/mike/.bash_prompt owner=mike group=dev mode=644
+
+- name: create user kadhum
+  user:  name=kadhum group=dev generate_ssh_key=yes password="{{kadhum_password}}" shell=/bin/bash
+
+- name: copy kadhum .profile
+  copy: src=../files/.profile dest=/home/kadhum/.profile owner=kadhum group=dev mode=644
+
+- name: copy kadhum .bashrc
+  copy: src=../files/.bashrc dest=/home/kadhum/.bashrc owner=kadhum group=dev mode=644
+
+- name: copy kadhum .bash_prompt
+  copy: src=../files/.bash_prompt dest=/home/kadhum/.bash_prompt owner=kadhum group=dev mode=644
