@@ -2,6 +2,9 @@
 master1 ansible_host=10.0.1.200
 master2 ansible_host=10.0.1.201
 minion1 ansible_host=10.0.1.202
+minion2 ansible_host=10.0.1.203
+minion3 ansible_host=10.0.1.204
+
 
 [x86]
 
@@ -11,3 +14,5 @@ master2 ansible_host=10.0.1.201
 
 [kube-minions]
 minion1 ansible_host=10.0.1.202
+minion2 ansible_host=10.0.1.203
+minion3 ansible_host=10.0.1.204
