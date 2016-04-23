@@ -1,5 +1,0 @@
----
-- name: Generate passwords
-  shell: python -c 'import crypt; print crypt.crypt("{{upassword}}","$6random_salt")'
-  register: genpass
-
