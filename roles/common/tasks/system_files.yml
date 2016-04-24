@@ -1,0 +1,8 @@
+---
+- name: put in sudoers file for deploy user
+  copy: src={{files_path}}/sudoers dest=/etc/sudoers owner=root group=root mode=440
+
+- name: put sshd_config file in /etc/ssh
+  copy: src={{files_path}}/sshd_config dest=/etc/ssh/sshd_config owner=root group=root mode=644
+  notify:
+    - restart sshd
