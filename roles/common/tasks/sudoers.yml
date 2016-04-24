@@ -1,0 +1,3 @@
+---
+- name: put in sudoers file for deploy user
+  copy: src=../files/sudoers dest=/etc/sudoers owner=root group=root mode=440

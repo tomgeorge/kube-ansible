@@ -1,4 +1,5 @@
 ---
+- include: sudoers.yml
 - include: groups.yml
 - include: users.yml
 
