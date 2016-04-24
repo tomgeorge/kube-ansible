@@ -1,4 +1,13 @@
-[arm]
+[common]
+master1 ansible_host=10.0.1.200
+master2 ansible_host=10.0.1.201
+minion1 ansible_host=10.0.1.202
+minion2 ansible_host=10.0.1.203
+minion3 ansible_host=10.0.1.204
+minion4 ansible_host=10.0.1.205
+minion5 ansible_host=10.0.1.206
+
+[raspbian]
 master1 ansible_host=10.0.1.200
 master2 ansible_host=10.0.1.201
 minion1 ansible_host=10.0.1.202
@@ -6,17 +15,17 @@ minion2 ansible_host=10.0.1.203
 minion3 ansible_host=10.0.1.204
 
 
-[x86]
-minion4_x86_64 ansible_host=10.0.1.205
-minion5_x86_64 ansible_host=10.0.1.206
+[centos]
+minion4 ansible_host=10.0.1.205
+minion5 ansible_host=10.0.1.206
 
-[kube-master]
+[master]
 master1 ansible_host=10.0.1.200
 master2 ansible_host=10.0.1.201
 
-[kube-minions]
+[minion]
 minion1 ansible_host=10.0.1.202
 minion2 ansible_host=10.0.1.203
 minion3 ansible_host=10.0.1.204
-minion4_x86_64 ansible_host=10.0.1.205
-minion5_x86_64 ansible_host=10.0.1.206
+minion4 ansible_host=10.0.1.205
+minion5 ansible_host=10.0.1.206
