@@ -6,7 +6,10 @@
   become_method: sudo
   strategy: free
 
-  roles:
-    - create_groups
-    - create_users
+  tasks:
+    - include: roles/create_users/main.yml
+    - include: roles/create_groups/main.yml
+  #oles:
+    #- create_groups
+    #- create_users
 
