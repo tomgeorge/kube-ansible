@@ -2,7 +2,8 @@
 # Shamelessly copied from https://github.com/gf3/dotfiles
 
 default_username='unknown'
-OSNAME="HypriotOS: "
+# OSNAME="HypriotOS: "
+OSNAME=$(cat /etc/*-release | grep ^NAME= | cut -d"=" -f2 | sed 's/\"//g')
 PROMPTCHAR="\$"
 
 # determine OS type
@@ -10,7 +11,7 @@ if [ $(uname -s) = Darwin ]; then
   OSNAME="OSX: "
   PROMPTCHAR="🐳 "
 else
-  OSNAME="HypriotOS: "
+  OSNAME=$(cat /etc/*-release | grep ^NAME= | cut -d"=" -f2 | sed 's/\"//g')
 fi
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
