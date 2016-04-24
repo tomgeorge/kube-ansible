@@ -3,7 +3,7 @@
 
 default_username='unknown'
 # OSNAME="HypriotOS: "
-OSNAME=$(cat /etc/*-release | grep ^NAME= | cut -d"=" -f2 | sed 's/\"//g')
+OSNAME="$(cat /etc/*-release | grep ^NAME= | cut -d"=" -f2 | sed 's/\"//g' | cut -d' ' -f1): "
 PROMPTCHAR="\$"
 
 # determine OS type
@@ -11,7 +11,7 @@ if [ $(uname -s) = Darwin ]; then
   OSNAME="OSX: "
   PROMPTCHAR="🐳 "
 else
-  OSNAME=$(cat /etc/*-release | grep ^NAME= | cut -d"=" -f2 | sed 's/\"//g')
+  OSNAME="$(cat /etc/*-release | grep ^NAME= | cut -d"=" -f2 | sed 's/\"//g' | cut -d' ' -f1): "
 fi
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
