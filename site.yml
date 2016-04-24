@@ -7,9 +7,9 @@
   strategy: free
   gather_facts: true
 
-#  tasks:
-#    - include: roles/create_users/main.yml
-#    - include: roles/create_groups/main.yml
+  roles:
+    - common
+
 
 - hosts: centos
   remote_user: deploy
