@@ -8,13 +8,13 @@
   with_items: "{{deploy_user}}"
 
 - name: copy .profile to home
-  copy: src=../files/.profile dest={{item.home}}/.profile owner={{item.name}} group=dev mode=644
+  copy: src={{files_path}}/profile dest={{item.home}}/.profile owner={{item.name}} group=dev mode=644
   with_items: "{{dev_users}}"
 
 - name: copy .bashrc to home
-  copy: src=../files/.bashrc dest={{item.home}}/.bashrc owner={{item.name}} group=dev mode=644
+  copy: src={{files_path}}/bashrc dest={{item.home}}/.bashrc owner={{item.name}} group=dev mode=644
   with_items: "{{dev_users}}"
-  
+
 - name: copy .bash_prompt to home
-  copy: src=../files/.bash_prompt dest={{item.home}}/.bash_prompt owner={{item.name}} group=dev mode=644
+  copy: src={{files_path}}/bash_prompt dest={{item.home}}/.bash_prompt owner={{item.name}} group=dev mode=644
   with_items: "{{dev_users}}"

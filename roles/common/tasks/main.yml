@@ -1,5 +1,15 @@
 ---
-- include: sudoers.yml
+- name: build hosts file
+  template:
+    src=hosts.j2
+    dest=/etc/hosts
+
+- name: buils resolv.conf
+  template:
+    src=resolv.conf.j2
+    dest=/etc/resolv.conf
+
+- include: system_files.yml
 - include: groups.yml
 - include: users.yml
 

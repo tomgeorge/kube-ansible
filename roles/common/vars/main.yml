@@ -1,7 +1,7 @@
 # pip install passlib
 # python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.encrypt(getpass.getpass())"
 ---
-dev_users: 
+dev_users:
   - name: tom
     password: $6$rounds=656000$XDCD3ttDjkx4E/pA$LFbPpK.BRXpl7ShAm5dqAXoZJ0t0zJk00fyPh/u6KrBoG3.8S.QMMko3eDEQeT35eR1lk4v1oyMDCFKfzH89C1
     home: /home/tom
@@ -31,3 +31,5 @@ deploy_user:
   - name: deploy
     password: $6$rounds=656000$4KxOOYCkyqOyWrgA$7TcVCA2S/f0ancZKyJpznCtLD4dZosoKFtWLyRpyAPK6mMctO7VFnhl.D3Pak63/JvRVw6FyfG7V.njz/Ja7o/
     home: /home/deploy
+
+files_path: ../files
