@@ -1,0 +1,7 @@
+---
+- name: create group dev
+  group: name=dev state=present
+
+- name: create group deploy
+  group: name=deploy state=present
+

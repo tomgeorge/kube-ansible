@@ -1,3 +1,0 @@
----
-- name: create group dev
-  group: name=dev state=present

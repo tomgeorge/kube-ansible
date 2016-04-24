@@ -5,8 +5,23 @@
   become: yes
   become_method: sudo
   strategy: free
+  gather_facts: true
 
   roles:
-    - create_groups
-    - create_users
+    - common
 
+- hosts: centos
+  remote_user: deploy
+  become: yes
+  become_method: sudo
+  strategy: free
+  roles:
+    - centos
+
+- hosts: raspbian
+  remote_user: deploy
+  become: yes
+  become_method: sudo
+  strategy: free
+  roles:
+    - raspbian
