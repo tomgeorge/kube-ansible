@@ -1,4 +1,1 @@
-ansible-playbook -i etc/ansible/hosts site.yml
-
-
-asdf
+ansible-playbook -i etc/ansible/hosts site.yml $@
