@@ -1,3 +1,6 @@
 ---
 - name: Install python
   apt: name=python update-cache=yes state=present
+
+- name: Install lvm2
+  apt: name=lvm2 state=present

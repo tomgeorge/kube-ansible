@@ -1,3 +1,6 @@
 ---
 - name: Install python
   yum: name=python state=present
+
+- name: Install lvm2
+  yum: name=lvm2 state=present
