@@ -1,35 +1,38 @@
 # pip install passlib
 # python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.encrypt(getpass.getpass())"
+# that made logging in really slow for whatever reason.
+# apt-get install whois
+# mkpasswd -m sha-512 worked better
 ---
 dev_users:
   - name: tom
-    password: $6$rounds=656000$XDCD3ttDjkx4E/pA$LFbPpK.BRXpl7ShAm5dqAXoZJ0t0zJk00fyPh/u6KrBoG3.8S.QMMko3eDEQeT35eR1lk4v1oyMDCFKfzH89C1
+    password: $6$3HYbiuJZc203f$grnr6eTlt.9pRpGoi6gKchFe86sEc4KD/Z/xnSiGGyDt0oWhsP1CoNn./aILkR.vWhKDii7Y/9fFeOsNBigOA/
     home: /home/tom
   - name: andrew
-    password: $6$rounds=656000$E6zMExub9FhXWcKo$JjShEnGNcdKzIZSNtirSFJf9nLS2Qt97VGPVsKpS9IGtv6CNI3R/CUeYuMiPClU923fjJEzmXc1UL7yv4k.uy1
+    password: $6$mpQGFXe1JwFpdG$jBbOZe6hhSPghNnp8bxF5wNX3ko6zck2KIHIAxLU6UXKel7VbYy4D.mSdDZ5Lqg1CFbxWjo2XVhRONnHvrkNK0
     home: /home/andrew
   - name: josh
-    password: $6$rounds=656000$5QvxRHOmk7LXZbE8$HRQqPeE3L2AiNm2XAZ7/OM07Mr2Tglua5AU657bfVspQWDSXdWOmTvMWwJGrrUcxlRBvkwUy/eTEhZFaISuNU0
+    password: $6$3k60eepg9b$jNHlRUegw0r2vgo3kBEJ4jnmkCBVM/DAC43IZM9W8Yxvo/xxhtjxXDF3KRB7MnqjT8hSzdhwMSULMjVQBIwPd0
     home: /home/josh
   - name: christian
-    password: $6$rounds=656000$sEnsXHQbXb7VD3eg$Z3UAPxpLvYTUhul1opyVX4DRBzi3UPQCsLJ/8LgIFZKDKCHyNyAyN3rcTWpI8NDmG7wcRDhY3C8PM985GSltv1
+    password: $6$RQY..y42aI4wi$y7ixLbHL2V9y1ak5Y.mV7pw.WM7TzaoQj3dn/EA3WRsqdo1BpOT3QJtY9ArA.A63CxveePzfc4X2YQSDltyZ40
     home: /home/christian
   - name: jason
-    password: $6$rounds=656000$1eqWVfaTcqotIG6w$DbBeaC5DnDUQ6nWP4zf.luv1hSPt0oyGHc8hC5/OsksImP1uBJtaPfJwvztOD/5KjiBzo5C5EP6hUgcqBjYZc/
+    password: $6$zJiTELsah2l.$M5aiMWVhk8H7KitKva0H645lfGzIyzAl1MKHx44iz31a4TcBN383yVtEfzD7fZ02doYaWe.61.tkRCzzCVNwu1
     home: /home/jason
   - name: mike
-    password: $6$rounds=656000$IKR1nAbmuW9Onlga$UxIBTzewOddO6qKVXdoIdTLm3.dkxm7doXrUMZ1MTA.IakxQHeMCy.3kOKlHGItkZ9oJyU5t34MmMYaaMXYmh/
+    password: $6$6YH9HLDB.Z8t.6$AVelVbcvbk.s7zFtNF9ufmbHDsyhWPt7avClqDtbyQz0Crh46nYis5hhE1KShzwT64/Z.zga90/PHZmEEf5Ex.
     home: /home/mike
   - name: maura
-    password: $6$rounds=656000$OrC77zn5UQ03lqxe$0TPCGWFR8My0nw.x2xiIIrbXFK4vfaguaQJBXYf2V71pu.wnYRh6sMwcpVbGJs1g6sw1wJvjoLNH7jv25mYCd1
+    password: $6$y2sALUAGbPwei$2iQSRLbSkNi/acouawRvxwUs4liDr7GWGFbDrMB6p/5P0RCwTJ1os7.vXbHcTQkL.wh0W6yiAktiAE8Udx3fh.
     home: /home/maura
   - name: kadhum
-    password: $6$rounds=656000$xMYzc7ai17jdQcX4$2TVXcaa0OhsbMDPRFAy9p0TamnrwbImnBd5lU5SwrRCcti0TGwyiCkG2z1htZMbWJGLc35hWZsVvg9mVZIb3t.
+    password: $6$WGWvN5WXz$iOw/sR54kbWzPVigmD4fFOBoQrb87pMN.vOtilOOmZyPSnf9E0SO9pRhPq6s7zQvBn.gp.F3g9JpaEG1O5vEs1
     home: /home/kadhum
 
 deploy_user:
   - name: deploy
-    password: $6$rounds=656000$4KxOOYCkyqOyWrgA$7TcVCA2S/f0ancZKyJpznCtLD4dZosoKFtWLyRpyAPK6mMctO7VFnhl.D3Pak63/JvRVw6FyfG7V.njz/Ja7o/
+    password: $6$.jnwBDFwx3ZUsSx$6/pzMb27aPdnl0uO25TIezVNeyEOFC5h/RoYWRUj7ZaIC9RD/mXw9uugXbuK0te7jdQ93agoJNsZ4AjpsWqZw.
     home: /home/deploy
 
 files_path: ../files
