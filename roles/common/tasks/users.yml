@@ -1,6 +1,6 @@
 ---
 - name: add dev users
-  user: name={{item.name}} password={{item.password}} state=present groups=dev generate_ssh_key=yes shell=/bin/bash state=present
+  user: name={{item.name}} password={{item.password}} state=present groups=dev,docker generate_ssh_key=yes shell=/bin/bash state=present
   with_items: "{{dev_users}}"
 
 - name: create user deploy

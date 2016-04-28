@@ -33,6 +33,9 @@ minion3
 minion4
 minion5
 
+[volume_groups]
+master1
+
 [master]
 master1 ansible_host=10.0.1.200
 master2 ansible_host=10.0.1.201

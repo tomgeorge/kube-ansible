@@ -1,0 +1,12 @@
+---
+- name: Create vg-master1
+  lvg: vg=vg.master1 pvs=/dev/sda
+
+- name: Create logical volume /var/lib/docker
+  lvol: vg=vg.master1 lv=var-lib-docker size=2G
+
+- name: Create ext4 filesystem for vg.master1-var-lib-docker
+  filesystem: fstype=ext4 dev=/dev/mapper/vg.master1-var-lib-docker
+
+- name: Mount it on /var/lib/docker
+  mount: name=/var/lib/docker src=/dev/mapper/vg.master1-var-lib-docker opts=rw state=present
