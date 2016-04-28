@@ -10,12 +10,12 @@
   roles:
     - common
 
-
 - hosts: centos
   remote_user: deploy
   become: yes
   become_method: sudo
   strategy: free
+  gather_facts: true
   roles:
     - centos
 
@@ -24,5 +24,33 @@
   become: yes
   become_method: sudo
   strategy: free
+  gather_facts: true
   roles:
     - raspbian
+
+- hosts: gluster_peers
+  remote_user: deploy
+  become: yes
+  become_method: sudo
+  strategy: free
+  gather_facts: true
+  roles:
+#     - gluster_peers
+
+- hosts: nfs-servers
+  remote_user: deploy
+  become: yes
+  become_method: sudo
+  strategy: free
+  gather_facts: true
+  roles:
+    - nfs-servers
+
+- hosts: nfs-clients
+  remote_user: deploy
+  become: yes
+  become_method: sudo
+  strategy: free
+  gather_facts: true
+  roles:
+    - nfs-clients

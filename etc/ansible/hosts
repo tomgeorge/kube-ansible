@@ -14,10 +14,24 @@ minion1 ansible_host=10.0.1.202
 minion2 ansible_host=10.0.1.203
 minion3 ansible_host=10.0.1.204
 
-
 [centos]
 minion4 ansible_host=10.0.1.205
 minion5 ansible_host=10.0.1.206
+
+[gluster_peers]
+master1 ansible_host=10.0.1.200
+master2 ansible_host=10.0.1.201
+
+[nfs-servers]
+master1
+master2
+minion1
+
+[nfs-clients]
+minion2
+minion3
+minion4
+minion5
 
 [master]
 master1 ansible_host=10.0.1.200

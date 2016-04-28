@@ -1,0 +1,6 @@
+---
+- name: Set up nfs common
+  apt: name=nfs-common state=present
+
+- name: Set up nfs server
+  apt: name=nfs-kernel-server state=present
