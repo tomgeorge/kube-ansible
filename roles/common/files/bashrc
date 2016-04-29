@@ -112,3 +112,7 @@ fi
 if [ -f ~/.bash_prompt ]; then
     . ~/.bash_prompt
 fi
+
+# docker cleanup aliases
+alias killc='docker kill $(docker ps -aq)'
+alias rmi='docker rmi $(docker images -aq)'

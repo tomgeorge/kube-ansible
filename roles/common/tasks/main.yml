@@ -12,4 +12,3 @@
 - include: system_files.yml
 - include: groups.yml
 - include: users.yml
-

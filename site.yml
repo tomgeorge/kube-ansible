@@ -1,13 +1,13 @@
 ---
-
 - hosts: all
   remote_user: deploy
   become: yes
   become_method: sudo
   strategy: free
   gather_facts: true
-
   roles:
+    - common
+  tags:
     - common
 
 - hosts: centos
@@ -18,6 +18,8 @@
   gather_facts: true
   roles:
     - centos
+  tags:
+    - centos
 
 - hosts: raspbian
   remote_user: deploy
@@ -27,33 +29,41 @@
   gather_facts: true
   roles:
     - raspbian
+  tags:
+    - raspbian
 
-- hosts: gluster_peers
+- hosts: nfs_servers
   remote_user: deploy
   become: yes
   become_method: sudo
   strategy: free
   gather_facts: true
   roles:
-#     - gluster_peers
+    - nfs_servers
+  tags:
+    - nfs_servers
 
-- hosts: nfs-servers
+- hosts: nfs_clients
   remote_user: deploy
   become: yes
   become_method: sudo
   strategy: free
   gather_facts: true
   roles:
-    - nfs-servers
+    - nfs_clients
+  tags:
+    - nfs_clients
 
-- hosts: nfs-clients
+- hosts: docker
   remote_user: deploy
   become: yes
   become_method: sudo
   strategy: free
   gather_facts: true
   roles:
-    - nfs-clients
+    - docker
+  tags: 
+    - docker
 
 - hosts: volume_groups
   remote_user: deploy
@@ -62,4 +72,6 @@
   strategy: free
   gather_facts: true
   roles:
-    - volume-groups
+    - volume_groups
+  tags:
+    - fs
