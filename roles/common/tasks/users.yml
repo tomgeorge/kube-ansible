@@ -7,6 +7,10 @@
   user:  name={{item.name}} password={{item.password}} group=deploy generate_ssh_key=yes createhome=no shell=/bin/bash state=present
   with_items: "{{deploy_user}}"
 
+- name: create user dev
+  user: name={{item.name}} password={{item.password}} group=dev createhome=no shell=/bin/bash state=present
+  with_items: "{{dev_user}}"
+
 - name: copy .profile to home
   copy: src={{files_path}}/profile dest={{item.home}}/.profile owner={{item.name}} group=dev mode=644
   with_items: "{{dev_users}}"

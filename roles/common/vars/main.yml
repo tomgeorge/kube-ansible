@@ -35,4 +35,8 @@ deploy_user:
     password: $6$.jnwBDFwx3ZUsSx$6/pzMb27aPdnl0uO25TIezVNeyEOFC5h/RoYWRUj7ZaIC9RD/mXw9uugXbuK0te7jdQ93agoJNsZ4AjpsWqZw.
     home: /home/deploy
 
+dev_user:
+  - name: dev
+    password: $6$DQYDnBKiCus4zASZ$euIkjm5x1nteU.GlWqpM6Wmd.uX7H.RE/xkOc9ZapSHS6HNIFYbe4ribwRZSOQ9/4m8cVPmtvYQJK4Mc5PbvJ.
+
 files_path: ../files

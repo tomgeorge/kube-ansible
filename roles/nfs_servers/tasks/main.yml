@@ -4,3 +4,20 @@
 
 - name: Set up nfs server
   apt: name=nfs-kernel-server state=present
+
+- name: mount solid state drive
+  mount: fstype={{item.fstype}} name={{item.name}} src={{item.src}} state={{item.state}} opts={{item.opts}}
+  with_items:
+    - { fstype: 'ext4', name: '/nfs', src: '/dev/sdb', state: 'mounted', opts: 'rw' }
+
+- name: chmod filesystem
+  command: find {{item.path}} -type d -exec chmod 775 {} \;
+  with_items:
+    - { path: '/nfs' }
+
+- name: chown filesystem
+  command:  chown -R dev:docker {{item.path}}
+  with_items:
+    - { path: '/nfs' }
+
+
