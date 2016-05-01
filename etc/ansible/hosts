@@ -4,8 +4,8 @@ master2 ansible_host=10.0.1.201
 minion1 ansible_host=10.0.1.202
 minion2 ansible_host=10.0.1.203
 minion3 ansible_host=10.0.1.204
-minion4 ansible_host=10.0.1.205
-minion5 ansible_host=10.0.1.206
+#minion4 ansible_host=10.0.1.205
+#minion5 ansible_host=10.0.1.206
 
 [raspbian]
 master1 ansible_host=10.0.1.200
@@ -15,8 +15,8 @@ minion2 ansible_host=10.0.1.203
 minion3 ansible_host=10.0.1.204
 
 [centos]
-minion4 ansible_host=10.0.1.205
-minion5 ansible_host=10.0.1.206
+#minion4 ansible_host=10.0.1.205
+#minion5 ansible_host=10.0.1.206
 
 [docker]
 master1 ansible_host=10.0.1.200
@@ -24,8 +24,8 @@ master2 ansible_host=10.0.1.201
 minion1 ansible_host=10.0.1.202
 minion2 ansible_host=10.0.1.203
 minion3 ansible_host=10.0.1.204
-minion4 ansible_host=10.0.1.205
-minion5 ansible_host=10.0.1.206
+#minion4 ansible_host=10.0.1.205
+#minion5 ansible_host=10.0.1.206
 
 [nfs_servers]
 master1 ansible_host=10.0.1.200
@@ -35,8 +35,8 @@ minion1 ansible_host=10.0.1.202
 [nfs_clients]
 minion2 ansible_host=10.0.1.203
 minion3 ansible_host=10.0.1.204
-minion4 ansible_host=10.0.1.205
-minion5 ansible_host=10.0.1.206
+#minion4 ansible_host=10.0.1.205
+#minion5 ansible_host=10.0.1.206
 
 [volume_groups]
 master1 ansible_host=10.0.1.200
@@ -53,5 +53,5 @@ master2 ansible_host=10.0.1.201
 minion1 ansible_host=10.0.1.202
 minion2 ansible_host=10.0.1.203
 minion3 ansible_host=10.0.1.204
-minion4 ansible_host=10.0.1.205
-minion5 ansible_host=10.0.1.206
+#minion4 ansible_host=10.0.1.205
+#minion5 ansible_host=10.0.1.206
