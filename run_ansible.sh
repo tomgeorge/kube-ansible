@@ -1,1 +1,1 @@
-ansible-playbook -i etc/ansible/hosts site.yml $@
+ansible-playbook -i etc/ansible/hosts cluster.yml $@
