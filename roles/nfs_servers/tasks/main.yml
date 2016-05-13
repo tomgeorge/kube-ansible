@@ -5,19 +5,50 @@
 - name: Set up nfs server
   apt: name=nfs-kernel-server state=present
 
-- name: mount solid state drive
-  mount: fstype={{item.fstype}} name={{item.name}} src={{item.src}} state={{item.state}} opts={{item.opts}}
-  with_items:
-    - { fstype: 'ext4', name: '/nfs', src: '/dev/sdb', state: 'mounted', opts: 'rw' }
+- name: Create volume groups for master1
+  lvg:  vg=vg.var pvs=/dev/sdb state=present
+  when: ansible_hostname == "master1"
 
-- name: chmod filesystem
-  command: find {{item.path}} -type d -exec chmod 775 {} \;
-  with_items:
-    - { path: '/nfs' }
+- name: Create var logical volume for master1
+  lvol: vg=vg.var lv=master1-var size=20G
+  when: ansible_hostname == "master1"
 
-- name: chown filesystem
-  command:  chown -R dev:docker {{item.path}}
-  with_items:
-    - { path: '/nfs' }
+- name: Create master1 var filesystem
+  filesystem: fstype=ext4 dev=/dev/mapper/vg.var-master1--var 
+  when: ansible_hostname == "master1"
+
+- name: Mount master1-var
+  mount: fstype=ext4 name=/mnt/var src=/dev/mapper/vg.var-master1--var state=present opts=rw
+  when: ansible_hostname == "master1"
 
 
+- name: Create volume groups for master2
+  lvg:  vg=vg.var pvs=/dev/sdb state=present
+  when: ansible_hostname == "master2"
+
+- name: Create var logical volume for master2
+  lvol: vg=vg.var lv=master2-var size=20G
+  when: ansible_hostname == "master2"
+
+- name: Create master2 var filesystem
+  filesystem: fstype=ext4 dev=/dev/mapper/vg.var-master2--var 
+  when: ansible_hostname == "master2"
+
+- name: Mount master2-var
+  mount: fstype=ext4 name=/mnt/var src=/dev/mapper/vg.var-master2--var state=present opts=rw
+  when: ansible_hostname == "master2"
+
+#- name: mount solid state drive
+#  mount: fstype={{item.fstype}} name={{item.name}} src={{item.src}} state={{item.state}} opts={{item.opts}}
+#  with_items:
+#   - { fstype: 'ext4', name: '/nfs', src: '/dev/sdb', state: 'mounted', opts: 'rw' }
+
+#- name: chmod filesystem
+#  command: find {{item.path}} -type d -exec chmod 775 {} \;
+#  with_items:
+#    - { path: '/nfs' }
+#
+#- name: chown filesystem
+#  command:  chown -R dev:docker {{item.path}}
+#  with_items:
+#    - { path: '/nfs' }

@@ -5,25 +5,20 @@
     - fs 
   when: ansible_architecture == "armv7l"
 
-- name: Create logical volume /var/lib/machinename/docker 
-  lvol: vg=vg.{{ansible_hostname}} lv=var-lib-{{ansible_hostname}}-docker size=10G
+- name: Create logical volume for /var
+  lvol: vg=vg.{{ansible_hostname}} lv=var size=100%FREE
   tags:
     - fs 
   when: ansible_architecture == "armv7l"
 
 
-- name: Create ext4 filesystem for vg.machinename-var-lib-machinename-docker.  Note logical volume names with hyphens get double-hyphenated.
-  filesystem: fstype=ext4 dev=/dev/mapper/vg.{{ansible_hostname}}-var--lib--{{ansible_hostname}}--docker
+- name: Create ext4 filesystem for /var
+  filesystem: fstype=ext4 dev=/dev/mapper/vg.{{ansible_hostname}}-var
   tags:
     - fs 
   when: ansible_architecture == "armv7l"
 
-
-- name: Mount it on /var/lib/{{ansible_hostname}}/docker
-  mount: name=/var/lib/{{ansible_hostname}}/docker src=/dev/mapper/vg.{{ansible_hostname}}-var--lib--{{ansible_hostname}}--docker opts=rw state=mounted fstype=ext4
-  tags:
-    - fs 
-  when: ansible_architecture == "armv7l"
+  ## need to move old /var to new volume group now.
 
 - name: reload systemd
   command:  systemctl daemon-reload
