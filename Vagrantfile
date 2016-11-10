@@ -26,7 +26,8 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: "cd ansible && source ./hacking/env-setup"
 
   # create private network
-  config.vm.network "private_network", ip: "192.168.0.100", netmask: "255.255.0.0"
+  #config.vm.network "private_network", ip: "192.168.0.100", netmask: "255.255.0.0"
+  #config.vm.network "public_network", ip: "10.0.1.142"
   config.vm.provider :virtualbox do |vb|
   	vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
 	vb.memory = 512
