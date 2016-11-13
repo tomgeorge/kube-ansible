@@ -35,6 +35,6 @@
   command: systemctl daemon-reload
 
 - name: start etcd
-  service: name=etcd enabled=true state=started
+  service: name=etcd enabled=true state=restarted
 
 

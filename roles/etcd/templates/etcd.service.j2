@@ -4,15 +4,7 @@ Documentation=https://github.com/coreos/etcd
 
 [Service]
 Environment=ETCD_UNSUPPORTED_ARCH=arm
-ExecStart=/usr/bin/etcd --name etcd-{{ ansible_hostname }} \
-	--initial-advertise-peer-urls=http://{{ ansible_eth0.ipv4.address }}:2380 \ 
-	--listen-peer-urls http://{{ ansible_eth0.ipv4.address }}:2380 \
-    --listen-client-urls https://{{ ansible_eth0.ipv4.address }}:2379,http://127.0.0.1:2379 \
-    --advertise-client-urls http://{{ ansible_eth0.ipv4.address }}:2379 \
-	--initial-cluster-token etcd-cluster-1 \
-	--initial-cluster master1=http://10.0.1.200:2380,master2=http://10.0.1.201:2380 \
-	--initial-cluster-state new \
-	--data-dir=var/lib/etcd 
+ExecStart=/usr/bin/etcd --name etcd-{{ansible_hostname}} --initial-advertise-peer-urls=http://{{ansible_eth0.ipv4.address}}:2380 --listen-peer-urls http://{{ansible_eth0.ipv4.address}}:2380  --listen-client-urls http://{{ansible_eth0.ipv4.address}}:2379,http://127.0.0.1:2379  --advertise-client-urls http://{{ansible_eth0.ipv4.address}}:2379 --initial-cluster-token etcd-cluster-1 --initial-cluster etcd-master1=http://10.0.1.200:2380,etcd-master2=http://10.0.1.201:2380 --initial-cluster-state new --data-dir=var/lib/etcd --debug
 Restart=on-failure
 RestartSec=5
 
