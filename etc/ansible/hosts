@@ -55,3 +55,7 @@ minion2 ansible_host=10.0.1.203
 minion3 ansible_host=10.0.1.204
 #minion4 ansible_host=10.0.1.205
 #minion5 ansible_host=10.0.1.206
+
+[etcd]
+master1 ansible_host=10.0.1.200
+master2 ansible_host=10.0.1.201

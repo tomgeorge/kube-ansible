@@ -1,0 +1,16 @@
+---
+- name: copy etcd binary
+  copy:
+    src=files/etcd
+    dest=/usr/bin/etcd
+    owner=root
+    group=root
+    mode=775
+
+- name: copy etcdctl binary
+  copy:
+    src=files/etcdctl
+    dest=/usr/bin/etcdctl
+    owner=root
+    group=root
+    mode=775
