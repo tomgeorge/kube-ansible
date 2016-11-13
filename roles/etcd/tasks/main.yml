@@ -1,4 +1,12 @@
 ---
+
+- name: create /etc/etcd directory
+  file:
+    path=/etc/etcd
+    state=directory
+    owner=root
+    group=root
+
 - name: copy etcd binary
   copy:
     src=files/etcd
@@ -14,3 +22,19 @@
     owner=root
     group=root
     mode=775
+
+- name: copy systemd service file
+  template: 
+    src=templates/etcd.service.j2
+    dest=/etc/systemd/system/etcd.service
+    owner=root
+    group=root
+    mode=775
+
+- name: reload systemd
+  command: systemctl daemon-reload
+
+- name: start etcd
+  service: name=etcd enabled=true state=started
+
+
