@@ -1,11 +1,38 @@
 ---
 
+- name: stop etcd
+  service: name=etcd state=stopped
+
 - name: create /etc/etcd directory
   file:
     path=/etc/etcd
     state=directory
     owner=root
     group=root
+
+- name: copy ca.pem 
+  copy:
+    src=files/ca.pem
+    dest=/etc/etcd/ca.pem
+    owner=root
+    group=root
+    mode=644
+
+- name: copy etcd-key.pem 
+  copy:
+    src=files/etcd-key.pem
+    dest=/etc/etcd/etcd-key.pem
+    owner=root
+    group=root
+    mode=600
+
+- name: copy etcd.pem 
+  copy:
+    src=files/etcd.pem
+    dest=/etc/etcd/etcd.pem
+    owner=root
+    group=root
+    mode=644
 
 - name: copy etcd binary
   copy:
