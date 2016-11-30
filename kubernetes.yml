@@ -9,3 +9,25 @@
     - etcd
   tags:
     - etcd
+
+- hosts: apiserver
+  remote_user: deploy
+  become: yes
+  become_method: sudo
+  strategy: free
+  gather_facts: true
+  roles:
+    - apiserver
+  tags:
+    - apiserver
+
+- hosts: flannel
+  remote_user: deploy
+  become: yes
+  become_method: sudo
+  strategy: free
+  gather_facts: true
+  roles:
+    - flannel
+  tags:
+    - flannel

@@ -1,0 +1,30 @@
+---
+- name: create /etc/kubernetes/manifests
+  file:
+    path=/etc/kubernetes/manifests
+    state=directory
+    owner=root
+    group=root
+
+- name: create /etc/kubernetes/ssl
+  file:
+    path=/etc/kubernetes/ssl
+    state=directory
+    owner=root
+    group=root
+
+- name: copy ca.pem 
+  copy:
+    src=../../etcd/files/ca.pem
+    dest=/etc/etcd/ca.pem
+    owner=root
+    group=root
+    mode=644
+  
+- name: copy apiserver key
+  copy:
+    src=files/apiserver-{{ansible_hostname}}-key.pem
+    dest=/etc/kubernetes/ssl/apiserver-{{ansible_hostname}}-key.pem
+    owner=root
+    group=root
+    mode=600
