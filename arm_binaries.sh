@@ -14,6 +14,11 @@ usage() {
 OPTS=`getopt -ofekah --long flannel,etcd,kubernetes,all,help -n 'parse-options' -- "$@"`
 eval set -- "$OPTS"
 
+if [[ $# -lt 2 ]]; then
+    usage
+    exit
+fi
+
 ANSIBLE_DIR=$(pwd)
 FLANNEL=false
 ETCD=false
