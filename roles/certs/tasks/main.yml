@@ -1,0 +1,55 @@
+---
+
+- name: create /etc/certs directory
+  file:
+    path=/etc/certs
+    state=directory
+    owner=root
+    group=root
+
+- name: ca.pem
+  copy:
+    src=files/ca.pem
+    dest=/etc/certs/ca.pem
+    owner=root
+    group=root
+    mode=644
+
+- name: ca-key.pem
+  copy:
+    src=files/ca.pem
+    dest=/etc/certs/ca-key.pem
+    owner=root
+    group=root
+    mode=644
+  when: (ansible_hostname == "master1" or ansible_hostname == "master2")
+
+- name: kubernetes.pem
+  copy:
+    src=files/kubernetes.pem
+    dest=/etc/certs/kubernetes.pem
+    owner=root
+    group=root
+    mode=644
+  when: (ansible_hostname == "master1" or ansible_hostname == "master2")
+
+- name: kubernetes-key.pem
+  copy:
+    src=files/kubernetes-key.pem
+    dest=/etc/certs/kubernetes-key.pem
+    owner=root
+    group=root
+    mode=644
+  when: (ansible_hostname == "master1" or ansible_hostname == "master2")
+
+- name: client-hostname.pem
+  copy:
+    src=files/{{ansible_hostname}}.pem
+    dest=/etc/certs/{{ansible_hostname}}.pem
+  when: (ansible_hostname == ansible_hostname and ansible_hostname != "master1" and ansible_hostname != "master2")
+
+- name: client-hostname-key.pem
+  copy:
+    src=files/{{ansible_hostname}}-key.pem
+    dest=/etc/certs/{{ansible_hostname}}-key.pem
+  when: (ansible_hostname == ansible_hostname and ansible_hostname != "master1" and ansible_hostname != "master2")

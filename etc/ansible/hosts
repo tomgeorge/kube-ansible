@@ -1,5 +1,5 @@
 [common]
-master1 ansible_host=10.0.1.200
+master1 ansible_host=10.0.1.185
 master2 ansible_host=10.0.1.201
 minion1 ansible_host=10.0.1.202
 minion2 ansible_host=10.0.1.203
@@ -8,7 +8,7 @@ minion3 ansible_host=10.0.1.204
 #minion5 ansible_host=10.0.1.206
 
 [raspbian]
-master1 ansible_host=10.0.1.200
+master1 ansible_host=10.0.1.185
 master2 ansible_host=10.0.1.201
 minion1 ansible_host=10.0.1.202
 minion2 ansible_host=10.0.1.203
