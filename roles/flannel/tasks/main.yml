@@ -1,0 +1,30 @@
+---
+- name: create /etc/flannel directory
+  file:
+    path=/etc/flannel
+    state=directory
+    owner=root
+    group=root
+
+- name: copy options.env
+  template:
+    src=options.env.j2
+    dest=/etc/flannel/options.env
+    owner=root
+    group=root
+    mode=644
+
+- name: create systemd dropin directory
+  file:
+    path=/etc/systemd/system/flannel.service.d
+    state=directory
+    owner=root
+    group=root
+
+- name: copy drop-in file
+  template:
+    src=40-ExecStartPre-symlink.conf.j2
+    dest=/etc/systemd/system/flannel.service.d/40-ExecStartPre-symlink.conf
+    owner=root
+    group=root
+    mode=644

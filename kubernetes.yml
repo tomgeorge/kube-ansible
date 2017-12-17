@@ -1,4 +1,15 @@
 ---
+
+- hosts: common
+  remote_user: deploy
+  become: yes
+  become_method: sudo
+  strategy: free
+  roles:
+    - certs 
+  tags:
+    - certs 
+
 - hosts: etcd
   remote_user: deploy
   become: yes
@@ -10,13 +21,24 @@
   tags:
     - etcd
 
-- hosts: common
+- hosts: apiserver
   remote_user: deploy
   become: yes
   become_method: sudo
   strategy: free
   gather_facts: true
   roles:
-    - certs 
+    - apiserver
   tags:
-    - certs 
+    - apiserver
+
+- hosts: flannel
+  remote_user: deploy
+  become: yes
+  become_method: sudo
+  strategy: free
+  gather_facts: true
+  roles:
+    - flannel
+  tags:
+    - flannel
