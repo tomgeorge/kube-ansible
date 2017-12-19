@@ -9,13 +9,33 @@
     - certs 
   tags:
     - certs 
+ 
+- hosts: master
+  remote_user: deploy
+  become: yes
+  become_method: sudo
+  strategy: free
+  roles:
+    - master
+  tags:
+    - master
+
+- hosts: minion
+  remote_user: deploy
+  become: yes
+  become_method: sudo
+  strategy: free
+  roles:
+    - minion 
+  tags:
+    - minion
 
 - hosts: etcd
   remote_user: deploy
   become: yes
   become_method: sudo
   strategy: free
-  gather_facts: true
+  gather_facts: false
   roles:
     - etcd
   tags:
@@ -26,7 +46,7 @@
   become: yes
   become_method: sudo
   strategy: free
-  gather_facts: true
+  gather_facts: false
   roles:
     - apiserver
   tags:
@@ -37,7 +57,7 @@
   become: yes
   become_method: sudo
   strategy: free
-  gather_facts: true
+  gather_facts: false
   roles:
     - flannel
   tags:

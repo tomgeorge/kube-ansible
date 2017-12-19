@@ -6,12 +6,13 @@ Documentation=https://github.com/coreos/etcd
 Environment=ETCD_UNSUPPORTED_ARCH=arm
 ExecStart=/usr/bin/etcd \
 --name etcd-{{ansible_hostname}} \
---cert-file=/etc/etcd/etcd.pem  \
---key-file=/etc/etcd/etcd-key.pem \
---peer-cert-file=/etc/etcd/etcd.pem \
---peer-key-file=/etc/etcd/etcd-key.pem \
---trusted-ca-file=/etc/etcd/ca.pem \
---peer-trusted-ca-file=/etc/etcd/ca.pem \
+--cert-file=/etc/certs/kubernetes.pem  \
+--key-file=/etc/certs/kubernetes-key.pem \
+--peer-cert-file=/etc/certs/kubernetes.pem \
+--peer-key-file=/etc/certs/kubernetes-key.pem \
+--trusted-ca-file=/etc/certs/ca.pem \
+--peer-trusted-ca-file=/etc/certs/ca.pem \
+--peer-client-cert-auth \
 --initial-advertise-peer-urls=https://{{ansible_eth0.ipv4.address}}:2380 \
 --listen-peer-urls https://{{ansible_eth0.ipv4.address}}:2380  \
 --listen-client-urls https://{{ansible_eth0.ipv4.address}}:2379,http://127.0.0.1:2379  \

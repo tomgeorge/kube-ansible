@@ -58,14 +58,27 @@ fi
 cd ${ANSIBLE_DIR}
 if [[ $KUBERNETES == true ]]; then
     echo "Downloading kubernetes 1.9.0"
-    wget https://dl.k8s.io/v1.9.0/kubernetes-client-linux-arm.tar.gz
-    wget https://dl.k8s.io/v1.9.0/kubernetes-server-linux-arm.tar.gz
-    tar -xvf kubernetes-client-linux-arm.tar.gz
-    tar -xvf kubernetes-server-linux-arm.tar.gz
-    echo "Copying kubernetes binaries to ${ANSIBLE_DIR}/roles/kubernetes/files"
-    cp kubernetes/**/bin/* roles/kubernetes/files
+    if [[ ! -e kubernetes-client-linux-arm.tar.gz ]]; then
+        wget https://dl.k8s.io/v1.9.0/kubernetes-client-linux-arm.tar.gz
+    fi
+    if [[ ! -e kubernetes-server-linux-arm.tar.gz ]]; then
+        wget https://dl.k8s.io/v1.9.0/kubernetes-server-linux-arm.tar.gz
+    fi
+    if [[ ! -e kubernetes/server && ! ! -d kubernetes/server ]]; then
+        tar -xvf kubernetes-server-linux-arm.tar.gz
+    fi
+    if [[ ! -e kubernetes/client && ! ! -d kubernetes/client ]]; then
+        tar -xvf kubernetes-client-linux-arm.tar.gz
+    fi
+    echo "Copying kubernetes binaries to ${ANSIBLE_DIR}/roles/master/files"
+    echo "Copying kubernetes binaries to ${ANSIBLE_DIR}/roles/minion/files"
+    cp kubernetes/server/bin/{kube-apiserver,apiextensions-apiserver,kube-proxy,kubectl,kubelet,kubeadm,hyperkube,kube-aggregator,kube-controller-manager,mounter,cloud-controller-manager,kube-scheduler} roles/master/files
+    cp kubernetes/client/bin/kubectl kubernetes/server/bin/{kubelet,kube-proxy} roles/minion/files
 fi
 
 if [[ $FLANNEL == true ]]; then
     echo "Building flannel..... loljk"
+    if [[ ! -e flannel-v0.9.1-linux-arm.tar.gz ]]; then
+        wget https://github.com/coreos/flannel/releases/download/v0.9.1/flannel-v0.9.1-linux-arm.tar.gz
+    fi
 fi

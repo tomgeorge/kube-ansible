@@ -1,0 +1,30 @@
+---
+
+- name: Install socat
+  apt: name=socat state=present
+
+        
+- name: kubelet
+  copy:
+    src=files/kubelet
+    dest=/usr/bin/kubelet
+    owner=root
+    group=root
+    mode=755
+
+
+- name: kube-proxy
+  copy:
+    src=files/kube-proxy
+    dest=/usr/bin/kube-proxy
+    owner=root
+    group=root
+    mode=755
+
+- name: kubectl
+  copy:
+    src=files/kubectl
+    dest=/usr/bin/kubectl
+    owner=root
+    group=root
+    mode=755

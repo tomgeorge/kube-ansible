@@ -67,9 +67,6 @@ cfssl gencert \
   admin-csr.json | cfssljson -bare admin
 
 # Kubelet client certificates
-IP_LEADING_IP=10.0.1
-IP_SUBNET_PORTION=202
-EXTERNAL_IP=${IP_LEADING_IP}.${IP_SUBNET_PORTION}
 for instance in minion1 minion2 minion3; do
 cat > ${instance}-csr.json <<EOF
 {
@@ -94,13 +91,9 @@ cfssl gencert \
   -ca=ca.pem \
   -ca-key=ca-key.pem \
   -config=ca-config.json \
-  -hostname=${instance},${EXTERNAL_IP}, \
+  -hostname=minion1,minion2,minion3,10.0.1.202,10.0.1.203,10.0.1.204,127.0.0.1 \
   -profile=kubernetes \
   ${instance}-csr.json | cfssljson -bare ${instance}
-
-IP_SUBNET_PORTION=$(echo $EXTERNAL_IP | cut -d \. -f4)
-IP_SUBNET_PORTION=$((IP_SUBNET_PORTION + 1))
-EXTERNAL_IP=${IP_LEADING_IP}.${IP_SUBNET_PORTION}
 done
 
 # Kube proxy client certificate
@@ -122,6 +115,13 @@ cat > kube-proxy-csr.json <<EOF
   ]
 }
 EOF
+
+cfssl gencert \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
+  -config=ca-config.json \
+  -profile=kubernetes \
+  kube-proxy-csr.json | cfssljson -bare kube-proxy
 
 # Kube API server certificate
 
@@ -148,7 +148,7 @@ cfssl gencert \
   -ca=ca.pem \
   -ca-key=ca-key.pem \
   -config=ca-config.json \
-  -hostname=10.32.0.1,10.240.0.10,10.240.0.11,10.240.0.12,${KUBERNETES_PUBLIC_ADDRESS},127.0.0.1,kubernetes.default \
+  -hostname=${KUBERNETES_PUBLIC_ADDRESS},10.0.1.127.0.0.1,master1,master2,10.0.1.200,10.0.1.201,kubernetes.default \
   -profile=kubernetes \
   kubernetes-csr.json | cfssljson -bare kubernetes
 

@@ -1,0 +1,98 @@
+---
+
+- name: apiextensions-apiserver
+  copy:
+    src=files/apiextensions-apiserver
+    dest=/usr/bin/apiextensions-apiserver
+    owner=root
+    group=root
+    mode=755
+
+- name: cloud-controller-manager
+  copy:
+    src=files/cloud-controller-manager
+    dest=/usr/bin/cloud-controller-manager
+    owner=root
+    group=root
+    mode=755
+
+- name: hyperkube
+  copy:
+    src=files/hyperkube
+    dest=/usr/bin/hyperkube
+    owner=root
+    group=root
+    mode=755
+
+- name: kubeadm
+  copy:
+    src=files/kubeadm
+    dest=/usr/bin/kubeadm
+    owner=root
+    group=root
+    mode=755
+
+- name: kube-aggregator
+  copy:
+    src=files/kube-aggregator
+    dest=/usr/bin/kube-aggregator
+    owner=root
+    group=root
+    mode=755
+
+- name: kube-apiserver 
+  copy:
+    src=files/kube-apiserver
+    dest=/usr/bin/kube-apiserver
+    owner=root
+    group=root
+    mode=755
+
+- name: kube-controller-manager
+  copy:
+    src=files/kube-controller-manager
+    dest=/usr/bin/kube-controller-manager
+    owner=root
+    group=root
+    mode=755
+
+- name: kubectl
+  copy:
+    src=files/kubectl
+    dest=/usr/bin/kubectl
+    owner=root
+    group=root
+    mode=755
+
+- name: kubelet
+  copy:
+    src=files/kubelet
+    dest=/usr/bin/kubelet
+    owner=root
+    group=root
+    mode=755
+
+- name: kube-proxy
+  copy:
+    src=files/kube-proxy
+    dest=/usr/bin/kube-proxy
+    owner=root
+    group=root
+    mode=755
+
+
+- name: kube-scheduler
+  copy:
+    src=files/kube-scheduler
+    dest=/usr/bin/kube-scheduler
+    owner=root
+    group=root
+    mode=755
+
+- name: encryption config
+  copy:
+    src=files/encryption-config.yaml
+    dest=/home/tom/encryption-config.yaml
+    owner=tom
+    group=dev
+    mode=644
