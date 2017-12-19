@@ -28,3 +28,19 @@
     owner=root
     group=root
     mode=755
+
+- name: minion kubeconfig
+  copy:
+    src=files/{{ansible_hostname}}.kubeconfig
+    dest=/home/tom/{{ansible_hostname}}.kubeconfig
+    owner=tom
+    group=dev
+    mode=644
+
+- name: kube-proxy kubeconfig
+  copy:
+    src=files/kube-proxy.kubeconfig
+    dest=/home/tom/kube-proxy.kubeconfig
+    owner=tom
+    group=dev
+    mode=644 
