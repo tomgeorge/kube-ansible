@@ -1,5 +1,27 @@
 ---
 
+- name: create /etc/kubernetes/manifests
+  file:
+    path=/etc/kubernetes/manifests
+    state=directory
+    owner=root
+    group=root
+
+- name: create /etc/kubernetes/ssl
+  file:
+    path=/etc/kubernetes/ssl
+    state=directory
+    owner=root
+    group=root
+
+
+- name: create /var/lib/kubernetes
+  file:
+    path=/var/lib/kubernetes
+    state=directory
+    owner=root
+    group=root
+
 - name: apiextensions-apiserver
   copy:
     src=files/apiextensions-apiserver
@@ -92,7 +114,43 @@
 - name: encryption config
   copy:
     src=files/encryption-config.yaml
-    dest=/home/tom/encryption-config.yaml
-    owner=tom
-    group=dev
+    dest=/var/lib/kubernetes/encryption-config.yaml
+    owner=root
+    group=root
     mode=644
+
+- name: kube-apiserver systemd service file
+  template:
+    src=templates/kube-apiserver.service.j2
+    dest=/etc/systemd/system/kube-apiserver.service
+    owner=root
+    group=root
+    mode=644
+
+- name: kube-controller-manager systemd service file
+  template:
+    src=templates/kube-controller-manager.service.j2
+    dest=/etc/systemd/system/kube-controller-manager.service
+    owner=root
+    group=root
+    mode=644
+
+- name: kube-scheduler systemd service file
+  template:
+    src=templates/kube-scheduler.service.j2
+    dest=/etc/systemd/system/kube-scheduler.service
+    owner=root
+    group=root
+    mode=644
+
+- name: reload systemd
+  command: systemctl daemon-reload
+
+- name: start kube-apiserver
+  service: name=kube-apiserver enabled=true state=restarted
+
+- name: start kube-controller-manager
+  service: name=kube-controller-manager enabled=true state=restarted
+
+- name: start kube-scheduler
+  service: name=kube-scheduler enabled=true state=restarted

@@ -9,6 +9,34 @@
     src=resolv.conf.j2
     dest=/etc/resolv.conf
 
+- name: create /etc/kubernetes/manifests
+  file:
+    path=/etc/kubernetes/manifests
+    state=directory
+    owner=root
+    group=root
+
+- name: create /var/lib/kube-proxy
+  file:
+    path=/var/lib/kube-proxy
+    state=directory
+    owner=root
+    group=root
+
+- name: create /var/lib/kubernetes
+  file:
+    path=/var/lib/kubernetes
+    state=directory
+    owner=root
+    group=root
+
+- name: create /var/run/kubernetes
+  file:
+    path=/var/lib/kubernetes
+    state=directory
+    owner=root
+    group=root
+
 - include: system_files.yml
 - include: groups.yml
 - include: users.yml

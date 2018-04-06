@@ -44,3 +44,29 @@
     owner=tom
     group=dev
     mode=644 
+
+- name: create /etc/cni/net.d
+  file:
+    path=/etc/cni/net.d
+    state=directory
+    owner=root
+    group=root
+
+- name: create /opt/cni/bin
+  file:
+    path=/opt/cni/bin
+    state=directory
+    owner=root
+    group=root
+
+- name: create /var/lib/kubelet
+  file:
+    path=/var/lib/kubelet
+    state=directory
+    owner=root
+    group=root
+
+- name: CNI plugins
+  unarchive:
+    src=files/cni-plugins-arm-v0.6.0.tgz
+    dest=/usr/local/bin

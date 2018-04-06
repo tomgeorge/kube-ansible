@@ -8,10 +8,11 @@ usage() {
     echo "    -e | --etcd: build etcd binaries"
     echo "    -a | --all: build/fetch all binaries"
     echo "    -h | --help: display this message"
+    echo "    -c | --cni fetch CNI binaries"
 }
 
 
-OPTS=`getopt -ofekah --long flannel,etcd,kubernetes,all,help -n 'parse-options' -- "$@"`
+OPTS=`getopt -ofekach --long flannel,etcd,kubernetes,all,cni,help -n 'parse-options' -- "$@"`
 eval set -- "$OPTS"
 
 if [[ $# -lt 2 ]]; then
@@ -23,6 +24,7 @@ ANSIBLE_DIR=$(pwd)
 FLANNEL=false
 ETCD=false
 KUBERNETES=false
+CNI=false
 HELP=false
 
 while true; do
@@ -30,8 +32,9 @@ while true; do
         -f | --flannel ) FLANNEL=true; shift -- ;;
         -e | --etcd ) ETCD=true; shift -- ;;
         -k | --kubernetes) KUBERNETES=true; shift -- ;;
-        -a | --all) FLANNEL=true; ETCD=true; KUBERNETES=true; shift -- ;;
+        -a | --all) FLANNEL=true; ETCD=true; KUBERNETES=true; CNI=true; shift -- ;;
         -h | --help) HELP=true; shift --;;
+        -c | --cni)  CNI=true; shift --;;
         -- ) shift; break ;;
         *) break ;;
     esac
@@ -82,3 +85,24 @@ if [[ $FLANNEL == true ]]; then
         wget https://github.com/coreos/flannel/releases/download/v0.9.1/flannel-v0.9.1-linux-arm.tar.gz
     fi
 fi
+
+if [[ $CNI == true ]]; then
+    if [[ ! -e roles/minion/files/cni-plugins-arm-v0.6.0.tgz ]]; then
+        echo "Downloading CNI..."
+        wget -P roles/minion/files https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-arm-v0.6.0.tgz
+    else
+        mv cni-plugins-arm-v0.6.0.tgz roles/minion/files
+    fi
+
+    echo "Building containerd....."
+    cd ..
+    if [[ -e cri-containerd && -d cri-containerd ]]; then
+        cd cri-containerd && git pull origin master
+    else
+        git clone https://github.com/kubernetes-incubator/cri-containerd && cd cri-containerd
+    fi
+    docker run -v $(pwd):/usr/src/app -w /usr/src/app -e GOARCH=arm -e GOPATH=/go:/usr/src/app -it golang /bin/bash
+    echo "Copying binaries to ${ANSIBLE_DIR}/roles/minion/files"
+    # cp bin/etcd* ${ANSIBLE_DIR}/roles/etcd/files
+fi
+

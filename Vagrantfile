@@ -13,24 +13,26 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "centos/7"
+  config.vm.box = "ubuntu/trusty64"
 
 
-  config.vm.provision "shell", inline: "yum makecache fast"
-  config.vm.provision "shell", inline: "yum install -y yum-utils"
-  config.vm.provision "shell", inline: "package-cleanup -y --cleandupes"
-  config.vm.provision "shell", inline: "yum install -y gcc gcc-c++ make git python-devel vim"
-  config.vm.provision "shell", inline: "curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python get-pip.py" 
-  config.vm.provision "shell", inline: "pip install paramiko PyYAML Jinja2 httplib2 six"
-  config.vm.provision "shell", inline: "git clone https://github.com/ansible/ansible --recursive"
-  config.vm.provision "shell", inline: "cd ansible && source ./hacking/env-setup"
+
+  config.vm.provision "shell", inline: "apt-get update && apt-get install -y gcc build-essential software-properties-common make git python3"
+  config.vm.provision "shell", inline: "add-apt-repository ppa:neovim-ppa/unstable"
+  config.vm.provision "shell", inline: "add-apt-repository ppa:ansible/ansible"
+  config.vm.provision "shell", inline: "apt-get update && apt-get install -y neovim ansible"
+  config.vm.provision "shell", inline: "git clone https://github.com/tomgeorge/dotfiles"
+  config.vm.provision "shell", inline: "git clone https://github.com/tomgeorge/vimfiles /home/vagrant/vim"
 
   # create private network
   #config.vm.network "private_network", ip: "192.168.0.100", netmask: "255.255.0.0"
-  #config.vm.network "public_network", ip: "10.0.1.142"
+  config.vm.network "public_network", ip: "10.0.1.142"
   config.vm.provider :virtualbox do |vb|
   	vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
-	vb.memory = 512
+	vb.memory = 1024
+	vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+	vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
   end
   config.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
+  config.vm.synced_folder "~/git", "/home/vagrant/git"
 end

@@ -17,7 +17,7 @@
 
 - name: ca-key.pem
   copy:
-    src=files/ca.pem
+    src=files/ca-key.pem
     dest=/etc/certs/ca-key.pem
     owner=root
     group=root

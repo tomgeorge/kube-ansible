@@ -15,5 +15,5 @@ RUN apt-get update && \
 # RUN chown -R deploy:deploy /usr/src/app
 # RUN chmod -R 755 /usr/src/app
 # USER deploy
-ENV LOCAL_USERNAME deploy
+# ENV LOCAL_USERNAME deploy
 WORKDIR /usr/src/app
